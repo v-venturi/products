@@ -6,12 +6,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+/**
+ * The Class DAO.
+ */
 public class DAO {
+	
+	/** The driver. */
 	private String driver = "com.mysql.cj.jdbc.Driver";
+	
+	/** The url. */
 	private String url = "jdbc:mysql://localhost:3306/db_estoque?useTimezone=true&Timezone=UTC";
+	
+	/** The user. */
 	private String user = "root";
+	
+	/** The password. */
 	private String password = "root";
 
+	/**
+	 * Conectar.
+	 *
+	 * @return the connection
+	 */
 	private Connection conectar() {
 		Connection con;
 		try {
@@ -24,6 +40,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Inserir produtos.
+	 *
+	 * @param produto the produto
+	 */
 	/*
 	 * public void testarConexao() { try {Connection con = conectar();
 	 * System.out.println("sucesso!  " + con); con.close(); } catch (Exception e) {
@@ -49,6 +70,11 @@ public class DAO {
 
 	}
 
+	/**
+	 * Listar produtos.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<JavaBeans> listarProdutos() {
 		ArrayList<JavaBeans> produtos = new ArrayList<>();
 		String read = "select * from produtos order by descricao";
@@ -74,6 +100,11 @@ public class DAO {
 
 	}
 
+	/**
+	 * Selecionar produto.
+	 *
+	 * @param produto the produto
+	 */
 	public void selecionarProduto(JavaBeans produto) {
 		String read2 = "select * from produtos where id = ?";
 		try {
@@ -93,6 +124,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Alterar produto.
+	 *
+	 * @param produto the produto
+	 */
 	public void alterarProduto(JavaBeans produto) {
 		String create = "update produtos set descricao=?,preco=?,estoque=? where id=?";
 		try {
@@ -109,6 +145,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Deleta produto.
+	 *
+	 * @param produto the produto
+	 */
 	public void deletaProduto(JavaBeans produto) {
 		String delete = "delete from produtos where id=?";
 		try {

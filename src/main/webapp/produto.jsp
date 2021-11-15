@@ -20,7 +20,7 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("produt
 <body>
 	<h1>Cadastro de Produtos</h1>
 	<a href="novo.html" class="botao">Novo Produto</a>
-	<a href="report" class="botao">Relatório</a>
+	<a href="report" target="_blank" class="botao">Relatório</a>
 	<table id="tabela">
 		<thead>
 			<tr>

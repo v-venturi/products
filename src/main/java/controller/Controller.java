@@ -18,16 +18,36 @@ import com.itextpdf.text.pdf.PdfWriter;
 import model.DAO;
 import model.JavaBeans;
 
+/**
+ * The Class Controller.
+ */
 @WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/edit", "/update", "/delete", "/report" })
 public class Controller extends HttpServlet {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The dao. */
 	DAO dao = new DAO();
+	
+	/** The produto. */
 	JavaBeans produto = new JavaBeans();
 
+	/**
+	 * Instantiates a new controller.
+	 */
 	public Controller() {
 		super();
 	}
 
+	/**
+	 * Do get.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
@@ -54,6 +74,14 @@ public class Controller extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Novo produto.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void novoProduto(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		produto.setDescricao(request.getParameter("descricao"));
@@ -63,6 +91,14 @@ public class Controller extends HttpServlet {
 		response.sendRedirect("main");
 	}
 
+	/**
+	 * Produtos.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void produtos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ArrayList<JavaBeans> lista = dao.listarProdutos();
@@ -72,10 +108,17 @@ public class Controller extends HttpServlet {
 
 	}
 
+	/**
+	 * Selecionar produto para edicao.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void selecionarProdutoParaEdicao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		produto.setId(id);
+		produto.setId(request.getParameter("id"));
 		dao.selecionarProduto(produto);
 		request.setAttribute("id", produto.getId());
 		request.setAttribute("descricao", produto.getDescricao());
@@ -85,6 +128,14 @@ public class Controller extends HttpServlet {
 		rd.forward(request, response);
 	}
 
+	/**
+	 * Editar produto.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void editarProduto(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		produto.setId(request.getParameter("id"));
@@ -95,14 +146,29 @@ public class Controller extends HttpServlet {
 		response.sendRedirect("main");
 	}
 
+	/**
+	 * Deletar produto.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void deletarProduto(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		produto.setId(id);
+		produto.setId(request.getParameter("id"));
 		dao.deletaProduto(produto);
 		response.sendRedirect("main");
 	}
 
+	/**
+	 * Gerar relatorio.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void gerarRelatorio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Document documento = new Document();
@@ -116,9 +182,9 @@ public class Controller extends HttpServlet {
 			documento.add(new Paragraph("Lista de produtos:"));
 			documento.add(new Paragraph(" "));
 			PdfPTable tabela = new PdfPTable(3);
-			PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
-			PdfPCell col2 = new PdfPCell(new Paragraph("Fone"));
-			PdfPCell col3 = new PdfPCell(new Paragraph("E-mail"));
+			PdfPCell col1 = new PdfPCell(new Paragraph("Descrição"));
+			PdfPCell col2 = new PdfPCell(new Paragraph("Preço"));
+			PdfPCell col3 = new PdfPCell(new Paragraph("Estoque (qtd)"));
 			tabela.addCell(col1);
 			tabela.addCell(col2);
 			tabela.addCell(col3);
