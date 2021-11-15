@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Estoque</title>
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Adicionar novo produto</h1>
+	<form name="formProduto" action="insert" >
+	<table>
+		<tr>
+			<td><input type="text" name="descricao" placeholder="Descrição" class="descricao"></td>			
+		</tr>
+		<tr>
+			<td><input type="text" name="preco" placeholder="Preço (R$)" class="numero"></td>			
+		</tr>
+		<tr>
+			<td><input type="text" name="estoque" placeholder="Estoque (Qtd)"class="numero"></td>			
+		</tr>	
+	</table>
+	<input type="button" value="Adicionar" class="botao" onclick="validar()">	
+	</form>
+	<script src="scripts/validador.js"></script>
+</body>
+</html>

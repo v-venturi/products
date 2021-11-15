@@ -1,18 +1,60 @@
 package model;
 
 public class JavaBeans {
-	
-	private int id;
+
+	private String id;
 	private String descricao;
-	private double preco;
-	private int estoque;
+	private String preco;
+	private String estoque;
 	
+
 	public JavaBeans() {
 		super();
-		
+
 	}
-	
-	public JavaBeans(int id, String descricao, double preco, int estoque) {
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+	public String getPreco() {
+		return preco;
+	}
+
+
+	public void setPreco(String preco) {
+		this.preco = preco;
+	}
+
+
+	public String getEstoque() {
+		return estoque;
+	}
+
+
+	public void setEstoque(String estoque) {
+		this.estoque = estoque;
+	}
+
+
+	public JavaBeans(String id, String descricao, String preco, String estoque) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -20,29 +62,6 @@ public class JavaBeans {
 		this.estoque = estoque;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public double getPreco() {
-		return preco;
-	}
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-	public int getEstoque() {
-		return estoque;
-	}
-	public void setEstoque(int estoque) {
-		this.estoque = estoque;
-	}
+	
 
 }
